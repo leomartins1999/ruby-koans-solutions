@@ -1,6 +1,6 @@
 = ruby-koans-solutions
 
-Solutions for https://www.rubykoans.com/
+Solutions for https://www.rubykoans.com
 
 https://github.com/edgecase/ruby_koans
 
