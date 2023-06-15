@@ -14,10 +14,18 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
+  raise TriangleError unless is_valid_input(a,b,c)
+
   return :equilateral if (a == b && b == c)
   return :isosceles if (a == b || b == c || c == a)
   
   :scalene
+end
+
+def is_valid_input(a,b,c)
+  sides = [a,b,c]
+
+  sides.all? { |s| s > 0 } && a + b > c && a + c > b && b + c > a
 end
 
 # Error class used in part 2.  No need to change this code.
