@@ -1,3 +1,5 @@
+require 'set'
+
 require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 # Greed is a dice game where you roll up to five dice to accumulate
@@ -30,7 +32,25 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 # Your goal is to write the score method.
 
 def score(dice)
-  # You need to write this method
+  f_map = build_frequency_map(dice)
+
+  res = 0
+
+  f_map.each { |nr, cnt|
+    res += 1000 if nr == 1 && cnt >= 3
+    res += 100 * nr if nr != 1 && cnt >= 3
+
+    res += 100 * (cnt % 3) if nr == 1
+    res += 50 * (cnt % 3) if nr == 5
+  }
+
+  res
+end
+
+def build_frequency_map(dice)
+  dice.to_set
+    .map{ |roll| [roll, dice.count(roll)] }
+    .to_h
 end
 
 class AboutScoringProject < Neo::Koan
